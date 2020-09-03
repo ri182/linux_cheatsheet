@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Cheat Sheet</title>
+  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,600' rel='stylesheet' type='text/css'><link rel="stylesheet" href="./style.css">
+<link rel="icon" 
+      type="image/png" 
+      href="https://tokyochronos.net/upload/rt30swqn.png">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<h1 class="head">Command Cheat sheet</h1>
+<p><a href="http://griever.pw/">💾</a></p>
+<div class="wrap">
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Display system usage</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    htop
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Tail log server</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    ./tailon -b griever.pw:1331 log.csv
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Docker list images</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    docker ps -a
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Docker restart image</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    docker restart imagename
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Which application on port</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    netstat -ltnp | grep -w ':80' 
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Find file</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    find ../../ -name *.php
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Recurisve folder zip</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    zip -r file.zip /folder/
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Kill process</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    pkill apache2
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Shortcut</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    ln -s /source/ linkname
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Gnome desktop</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    systemctl start gdm
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>List running services</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    systemctl --type=service --state=running 
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Display networking</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    ifconfig -a
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Directory space usage</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    ncdu
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Portia crawler</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    docker run -i -t --rm -v ~/portia_projects:/app/data/projects:rw -v /root/dev/:/mnt:rw -p 9001:9001 scrapinghub/portia \
+    portiacrawl /app/data/projects/project_name spider_name.com -o /mnt/output_name.csv -s CONCURRENT_ITEMS=10 -s CONCURRENT_REQUESTS_PER_DOMAIN=1 -s DOWNLOAD_DELAY=10
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Kil zombie process <i>(scary!)</i></h1>
+	  </div>
+	  <div class="bit-2 code">
+	    ps aux| grep 'keyword'
+<br># find the PID of zombie's tree and issue -p 9
+<br>
+pstree -p -s zombie_pid
+<br>
+sudo kill 9 parent_pid
+	  </div>
+	</div>
+
+	<div class="frame">
+	  <div class="bit-2 norm">
+	    <h1>Ban all IPs accessing "keyword"</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    grep "keyword" $path_to_access.log | grep -Po "^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}" | sort | uniq | xargs -I% sudo iptables -A INPUT -s % -j DROP
+	  </div>
+	</div>
+
+	<div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Add user and set it's password</h1>
+	  </div>
+	  <div class="bit-2 code">
+	    useradd username
+        passwd username
+	  </div>
+	</div>
+    
+    <div class="frame light">
+	  <div class="bit-2 norm">
+	    <h1>Ban IP access</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  iptables -A INPUT -s 13.37.1.0 -j DROP
+      <br>iptables-save
+      <br>13.0.0.0/8 for range
+	  </div>
+              
+	</div>
+	
+          <div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Revoke IP ban</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  iptables -D INPUT -s 133.7.7.31 -j DROP
+	  </div>
+    </div>
+	  
+	        <div class="frame light">
+	  <div class="bit-2 norm">
+	    <h1>Docker prune</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  docker system prune -all
+	  </div> </div>
+	  
+	  	        <div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Timed-out command</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  timeout 10 ping www.goooooogle.com
+	  </div> </div>
+	  
+	  	  	        <div class="frame light">
+	  <div class="bit-2 norm">
+	    <h1>Recursive wget with User Agent</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  wget -U "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)" -r --no-parent http://www.google.com
+	  </div> </div>
+	  
+	  	  	  	        <div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Generate passwordless SSH key and push</h1>
+	  </div>
+	  <div class="bit-2 code">
+ssh-keygen -t rsa -b 2048
+<br>
+ssh-copy-id id@server
+	  </div> </div>
+	  
+	    	  	  	    <div class="frame light">
+	  <div class="bit-2 norm">
+	    <h1>Recursive rsync with public SSH key
+</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  rsync -r ssh path/source/ user@IP_machine:/path/destination/
+	  </div> </div>
+	  
+	  <div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Gnome shell reset
+</h1>
+	  </div>
+	  
+	  <div class="bit-2 code">
+ALT+F2 ==> R	  </div> </div>
+	  
+	  	  <div class="frame light">
+	  <div class="bit-2 norm">
+	    <h1>Clear inodes and RAM buffer
+</h1>
+	  </div>
+	  <div class="bit-2 code">	  echo "echo 3 > /proc/sys/vm/drop_caches"
+    </div> </div>
+	  
+	   <div class="frame light">
+	  <div class="bit-2 norm">
+	    <h1>Grep IPs from access log
+</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  	  grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" /var/log/nginx/access.log
+	  </div> </div>
+	  
+	  	   <div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>Remote server access as local desktop notifications
+</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  	  ssh root@server.net -f tail -f /var/nginx/ >> here.file
+        <br>tail -f /home/odin/here.file | while read line; do notify-send "nginx" "$line"; done
+	  </div> </div>
+
+ <div class="frame light">
+	  <div class="bit-2 norm">
+	    <h1>Awesome local log tailer
+</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  	  apt install lnav
+        <br>lnav /var/log/nginx/access.log
+	  </div> </div>
+
+      <div class="frame dark">
+	  <div class="bit-2 norm">
+	    <h1>List connectins by keyword</h1>
+	  </div>
+	  <div class="bit-2 code">
+	  ss | grep ssh
+	  </div>   
+	  </div>
+	  
+</div>
+<footer>
+</footer>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</body>
+</html>
